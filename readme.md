@@ -6,3 +6,7 @@ Requirements:
 Usage example:
 
 python train.py --file1 <path_to_sample1> --file2 <path_to_sample1>
+
+The two sample files need to be in .csv format, where each line corresponds to a data point and each column to a marker. Both files need to have he same number of columns.
+
+Any further questions should be referred to Uri Shaham, uri.shaham@yale.edu
