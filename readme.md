@@ -1,6 +1,7 @@
 Repository for the paper "Removal of Batch Effects using Distribution-Matching Residual Networks" by Uri Shaham, Kelly P. Stanton, Jun Zhao, Huamin Li, Khadir Raddassi, Ruth Montgomery, and Yuval Kluger.
 
 Requirements:
+    Python 3.7.4
     PyTorch1.4
     
 Usage example:

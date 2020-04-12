@@ -45,7 +45,7 @@ def scatterHist(x1,x2, y1,y2, axis1='', axis2='', title='', name1='', name2='',
     axScatter.set_ylim((-lim, lim))
     
     bins = np.arange(-lim, lim + binwidth, binwidth)
-    axHistx.hist(x1, bins=bins, color = 'blue', normed=True, stacked = True, histtype='step' )
+    axHistx.hist(x1, bins=bins, color = 'blue', density=True, stacked = True, histtype='step' )
     axHisty.hist(x2, bins=bins, orientation='horizontal', color = 'blue', normed=True, stacked = True, histtype='step')
     axHistx.hist(y1, bins=bins, color = 'red', normed=True, stacked = True, histtype='step')
     axHisty.hist(y2, bins=bins, orientation='horizontal', color = 'red', normed=True, stacked = True, histtype='step')
