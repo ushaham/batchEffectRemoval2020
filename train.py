@@ -196,6 +196,8 @@ def update_lr():
 
 def training_step(batch1, batch2):
     
+    mmd_resnet.train(True)
+    
     calibrated_batch2 = mmd_resnet(batch2)
     
     # Compute distance matrices
@@ -267,6 +269,9 @@ def main():
     print('Finished training')
     
     # calibrate sample2 -> batch 1    
+    
+    mmd_resnet.train(False)
+    
     calibrated_sample2 = []
     for batch_idx, batch2 in enumerate(sample2_loader):
         batch2 = batch2[0].to(device=device)
