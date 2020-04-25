@@ -314,8 +314,8 @@ def main():
                    axis1, 
                    axis2, 
                    title="Data after calibration",
-                   name1='recon. sample1', 
-                   name2='calib. sample2')
+                   name1='sample1', 
+                   name2='sample2')
     
     if not os.path.exists(args.save_dir):
         os.makedirs(args.save_dir)
