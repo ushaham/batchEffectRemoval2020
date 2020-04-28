@@ -40,19 +40,19 @@ parser.add_argument("--scale_k",
                     help="Number of neighbors for determining the RBF scale")
 parser.add_argument('--batch_size', 
                     type=int, 
-                    default=128,
+                    default=256,
                     help='Batch size (default=128)')
 parser.add_argument('--lr', 
                     type=float, 
-                    default=1e-3,
+                    default=1e-5,
                     help='learning_rate (default=1e-3)')
 parser.add_argument("--min_lr",
                     type=float,
-                    default=1e-5,
+                    default=1e-6,
                     help="Minimal learning rate")
 parser.add_argument("--decay_step_size",
                     type=int,
-                    default=50000,
+                    default=10,
                     help="LR decay step size")
 parser.add_argument("--lr_decay_factor",
                     type=float,
@@ -60,11 +60,11 @@ parser.add_argument("--lr_decay_factor",
                     help="LR decay factor")
 parser.add_argument("--weight_decay",
                     type=float,
-                    default=0e-4,
+                    default=1e-4,
                     help="l_2 weight penalty")
 parser.add_argument("--epochs_wo_im",
                     type=int,
-                    default=15,
+                    default=5,
                     help="Number of epochs without improvement before stopping")
 parser.add_argument("--save_dir",
                     type=str,
@@ -172,9 +172,9 @@ optim = torch.optim.SGD(mmd_resnet.parameters(),
                         lr=args.lr, 
                         weight_decay=args.weight_decay)    
 
-def lambda_rule(i_episode) -> float:
+def lambda_rule(epoch) -> float:
     """ stepwise learning rate calculator """
-    exponent = int(np.floor((i_episode + 1) / args.decay_step_size))
+    exponent = int(np.floor((epoch + 1) / args.decay_step_size))
     return np.power(args.lr_decay_factor, exponent)
 
 scheduler = lr_scheduler.LambdaLR(optim, 
@@ -230,7 +230,7 @@ def training_step(batch1, batch2):
 def main():
     
     best_loss = 100
-    eps = 1e-3
+    eps = 1e-4
     epoch_counter = 0
     for epoch in count(1):
         batch_losses = []
