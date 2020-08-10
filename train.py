@@ -71,7 +71,7 @@ parser.add_argument("--save_dir",
                     default='./calibrated_data',
                     help="Directory for calibrated data")
 
-args = parser.parse_args()
+args = parser.parse_args(args=[])
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -162,7 +162,7 @@ class Mmd_resnet(nn.Module):
 
         
 mmd_resnet = Mmd_resnet(input_dim,
-                        args.n_blocks)     
+                        args.n_blocks).to(device=device)  
     
 # ==============================================================================
 # =                         Optimizer and Learning rate                        =
